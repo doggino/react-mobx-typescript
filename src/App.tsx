@@ -1,9 +1,9 @@
 import * as React from "react";
 
-
 import logo from "./logo.svg";
 import "./App.css";
-import TClass from "./components/testClass"
+import TClass from "./components/testClass";
+import MyComp from "./components/testComponent";
 const App: React.FC = () => {
   let b = () => {};
   function greet(a: string): void {
@@ -18,8 +18,15 @@ const App: React.FC = () => {
   //   // this.b();
   // };
   return (
-    <div><TClass/>></div>
-  
+    <React.Fragment>
+      <div>
+        <TClass />>
+      </div>
+      <div>
+        <MyComp />
+      </div>
+    </React.Fragment>
+
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />

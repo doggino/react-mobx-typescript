@@ -2,7 +2,7 @@ import { observable, action, computed } from "mobx";
 
 export interface IMyStore {
   count: number;
-  Count: number;
+  getCount: number;
   setCount(count: number): void;
 }
 
@@ -10,7 +10,7 @@ export class MyStore implements IMyStore {
   @observable count = 0;
 
   @computed
-  public get Count(): number {
+  public get getCount(): number {
     return this.count;
   }
 

@@ -1,1 +1,1 @@
-export { default } from './TClass'
+export { default } from "./TClass";
