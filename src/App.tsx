@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import TClass from "./components/testClass";
 import MyComp from "./components/testComponent";
+import SearchPanel from "./components/SearchPanel";
 const App: React.FC = () => {
   let b = () => {};
   function greet(a: string): void {
@@ -25,6 +26,7 @@ const App: React.FC = () => {
       <div>
         <MyComp />
       </div>
+      <div><SearchPanel /></div>
     </React.Fragment>
 
     // <div className="App">
