@@ -1,9 +1,11 @@
 import { MobxStore } from "./mobxStore";
 import { MyStore } from "./myStore";
-import { SearchPanelStore } from "./searchPanelStore";
+import { ContentStore } from "./contentStore";
+import { OptionsPanelStore } from "./optionsPanelStore";
 
 export const stores = {
   mobxStore: new MobxStore(),
   myStore: new MyStore(),
-  searchPanelStore: new SearchPanelStore()
+  contentStore: new ContentStore(),
+  optionsPanelStore: new OptionsPanelStore()
 };

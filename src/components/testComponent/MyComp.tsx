@@ -20,8 +20,8 @@ export default class MyComp extends Component<IMyComp> {
   };
   inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { setInputValue } = this.props.myStore!;
-    if(typeof +e.target.value) setInputValue(e.target.value)
-    else alert("PLEASE ENTER ONLY NUMBERS!!!")
+    if(!isNaN(+e.target.value)) setInputValue(e.target.value)
+    else alert("PLEASE, ENTER ONLY NUMBERS!!!")
   };
   render() {
     const {
