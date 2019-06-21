@@ -1,6 +1,7 @@
 import { observable, action } from "mobx";
 
 export interface IOptionsPanelStore {
+  type: string;
   limit: number;
   offset: number;
   rating: string;
@@ -12,11 +13,15 @@ export interface IOptionsPanelStore {
 }
 
 export class OptionsPanelStore implements IOptionsPanelStore {
-  @observable limit = 0;
+  @observable type = "gifs";
+  @observable limit = 10;
   @observable offset = 0;
-  @observable rating = "";
-  @observable lang = "";
+  @observable rating = "G";
+  @observable lang = "eu";
 
+  @action public setType = (type: string): void => {
+    this.type = type;
+  };
   @action public setLimit = (limit: number): void => {
     this.limit = limit;
   };

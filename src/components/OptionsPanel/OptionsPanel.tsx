@@ -15,10 +15,26 @@ interface IOptionsPanelStore {
 @inject("optionsPanelStore")
 @observer
 export default class OptionsPanel extends Component<IOptionsPanelStore> {
-  limitInputHandle() {}
+  private typeInputHandle = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.props.optionsPanelStore!.setType(e.target.value);
+  }
+  private limitInputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    this.props.optionsPanelStore!.setLimit(+e.target.value);
+  }
+  private offSetInputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    this.props.optionsPanelStore!.setOffset(+e.target.value);
+  }
+  private ratingInputHandle = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.props.optionsPanelStore!.setRating(e.target.value);
+  }
+  private langInputHandle = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.props.optionsPanelStore!.setLang(e.target.value);
+  }
+  // limitInputHandle(e: React.ChangeEvent<HTMLInputElement) {}
   render() {
     // console.log("content: ", this.props.contentStore!.content);
     const {
+      type,
       limit,
       offset,
       rating,
@@ -28,26 +44,42 @@ export default class OptionsPanel extends Component<IOptionsPanelStore> {
       setRating,
       setLang
     } = this.props.optionsPanelStore!;
-
+    console.log("rat", this.props.optionsPanelStore!.rating )
     return (
+      
       <div>
         <label>
-          <input type="text" value={limit} />
+          Type:
+          <select name="" id="" value={type} onChange={this.typeInputHandle}>
+            <option value="gifs">gifs</option>
+            <option value="stickers">stickers</option>
+          </select>
         </label>
         <label>
-          <input type="text" value={offset} />
+          Limit:
+          <input type="number" value={limit} onChange={this.limitInputHandle}/>
         </label>
-        <select name="" id="" value={rating}>
-          <option value="Y">Y</option>
-          <option value="G">G</option>
-          <option value="PG">PG</option>
-          <option value="PG-13">PG-13</option>
-          <option value="R">R</option>
-        </select>
-        <select name="" id="" value={lang}>
-          <option value="en">en</option>
-          <option value="ru">ru</option>
-        </select>
+        <label>
+          Offset:
+          <input type="number" value={offset} onChange={this.offSetInputHandle}/>
+        </label>
+        <label>
+          Rating:
+          <select name="" id="" value={rating} onChange={this.ratingInputHandle}>
+            <option value="Y">Y</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+          </select>
+        </label>
+        <label>
+          lang:
+          <select name="" id="" value={lang} onChange={this.langInputHandle}>
+            <option value="en">en</option>
+            <option value="ru">ru</option>
+          </select>
+        </label>
       </div>
     );
   }

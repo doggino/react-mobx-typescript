@@ -13,16 +13,21 @@ export interface IContentStore {
 //currentContent ? prevContentHistory
 export class ContentStore implements IContentStore {
   @observable count = 0;
-  @observable content = [];
+  @observable content = <any>[];
 
   @action public searchContent = async (url: string) => {
-    const res = await fetch(url);
-    const json = await res.json();
-    console.log("json", json);
-    return json;
+    try {
+      const res = await fetch(url);
+      const json = await res.json();
+      console.log("json", json);
+      return json;
+    } catch (e) {
+      console.error("Error! ", e);
+    }
   };
-  @action public setContent = (content: any)=> {
-    this.content = content;
+  @action public setContent = (content: any) => {
+    if (Array.isArray(content)) this.content = content;
+    else this.content = [content];
   };
   // @computed public getContent = () => {}
 }
