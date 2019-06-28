@@ -17,12 +17,11 @@ export class ContentStore implements IContentStore {
   @observable loading = false;
 
   @action public searchContent = async (url: string) => {
-   this.setLoading(true);
+    this.setLoading(true);
     try {
       const res = await fetch(url);
       this.setLoading(false);
       const json = await res.json();
-      console.log("json", json);
       return json;
     } catch (e) {
       console.error("Error! ", e);
