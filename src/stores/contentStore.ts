@@ -1,23 +1,26 @@
-import { observable, action, computed } from "mobx";
-/* export interface IContentItem {
-  name: string;
-  link: string;
-  tags: Array<string>;
-} */
-export interface IContentStore {
+import { observable, action } from "mobx";
+
+interface IContentStore {
   count: number;
   content: Array<any>;
+  firstReq: boolean;
+  loading: boolean;
   searchContent(url: string): any;
   setContent(content: any): void;
+  setFirstReq(status: boolean): void;
 }
-//currentContent ? prevContentHistory
+
 export class ContentStore implements IContentStore {
   @observable count = 0;
-  @observable content = <any>[];
+  @observable content = [] as any;
+  @observable firstReq = true;
+  @observable loading = false;
 
   @action public searchContent = async (url: string) => {
+   this.setLoading(true);
     try {
       const res = await fetch(url);
+      this.setLoading(false);
       const json = await res.json();
       console.log("json", json);
       return json;
@@ -25,9 +28,14 @@ export class ContentStore implements IContentStore {
       console.error("Error! ", e);
     }
   };
-  @action public setContent = (content: any) => {
+  @action public setContent = (content: any): void => {
     if (Array.isArray(content)) this.content = content;
     else this.content = [content];
   };
-  // @computed public getContent = () => {}
+  @action public setFirstReq = (status: boolean): void => {
+    this.firstReq = status;
+  };
+  @action private setLoading = (status: boolean): void => {
+    this.loading = status;
+  };
 }

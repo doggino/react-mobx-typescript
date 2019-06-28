@@ -1,56 +1,26 @@
 import React, { Component } from "react";
+import { observer} from "mobx-react";
 
-import "./App.css";
-import TClass from "./components/testClass";
-import MyComp from "./components/testComponent";
+/* components */
 import SearchPanel from "./components/SearchPanel";
 import OptionsPanel from "./components/OptionsPanel";
-import ContentItem from "./components/ContentItem";
-/* store */
-import { ContentStore } from "./stores/contentStore";
-import { OptionsPanelStore } from "./stores/optionsPanelStore";
+import Content from "./components/Content";
 
-import { observer, inject } from "mobx-react";
-import { JSXElement } from "@babel/types";
+/* styles */
+import styles from "./App.module.scss";
 
-interface IApp {
-  contentStore?: ContentStore;
-  optionsPanelStore?: OptionsPanelStore;
-}
-@inject("contentStore")
+
 @observer
-export default class App extends Component<IApp> {
+export default class App extends Component {
   render() {
-    console.log("asd", this.props.contentStore!.content);
     return (
       <div>
-        <div>
-          <TClass />>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>Welcome to the GIPHY!</h1>
         </div>
-        <div>
-          <MyComp />
-        </div>
-        <div>
-          <OptionsPanel />
-        </div>
-        <div>
-          <SearchPanel />
-        </div>
-        <div>
-          {this.props.contentStore!.content.length &&
-            this.props.contentStore!.content.map(
-              (item: any): any => {
-                console.log("item", item.url);
-
-                return (
-                  <ContentItem
-                    url={item.images.original.url}
-                    title={item.title}
-                  />
-                );
-              }
-            )}
-        </div>
+        <OptionsPanel />
+        <SearchPanel />
+        <Content />
       </div>
     );
   }

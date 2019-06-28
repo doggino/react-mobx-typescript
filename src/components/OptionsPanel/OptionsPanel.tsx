@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { observable, action, computed } from "mobx";
 import { observer, inject } from "mobx-react";
 
 /* store */
 import { OptionsPanelStore } from "../../stores/optionsPanelStore";
-
 /* styles */
-import styles from "./OptionPanel.module.scss";
+import styles from "./OptionsPanel.module.scss";
 
 interface IOptionsPanelStore {
   optionsPanelStore?: OptionsPanelStore;
@@ -19,10 +17,10 @@ export default class OptionsPanel extends Component<IOptionsPanelStore> {
     this.props.optionsPanelStore!.setType(e.target.value);
   }
   private limitInputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.optionsPanelStore!.setLimit(+e.target.value);
+    this.props.optionsPanelStore!.setLimit(+e.target.value > 0 ? +e.target.value : 1 );
   }
   private offSetInputHandle = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.optionsPanelStore!.setOffset(+e.target.value);
+    this.props.optionsPanelStore!.setOffset(+e.target.value > 0 ? +e.target.value : 0 );
   }
   private ratingInputHandle = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.props.optionsPanelStore!.setRating(e.target.value);
@@ -30,42 +28,34 @@ export default class OptionsPanel extends Component<IOptionsPanelStore> {
   private langInputHandle = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     this.props.optionsPanelStore!.setLang(e.target.value);
   }
-  // limitInputHandle(e: React.ChangeEvent<HTMLInputElement) {}
   render() {
-    // console.log("content: ", this.props.contentStore!.content);
     const {
       type,
       limit,
       offset,
       rating,
-      lang,
-      setLimit,
-      setOffset,
-      setRating,
-      setLang
+      lang
     } = this.props.optionsPanelStore!;
-    console.log("rat", this.props.optionsPanelStore!.rating )
-    return (
-      
-      <div>
+    return (  
+      <div className={styles.options}>
         <label>
-          Type:
-          <select name="" id="" value={type} onChange={this.typeInputHandle}>
+          Type:  
+          <select value={type} onChange={this.typeInputHandle}>
             <option value="gifs">gifs</option>
             <option value="stickers">stickers</option>
           </select>
         </label>
         <label>
-          Limit:
+          Limit:  
           <input type="number" value={limit} onChange={this.limitInputHandle}/>
         </label>
         <label>
-          Offset:
+          Offset:  
           <input type="number" value={offset} onChange={this.offSetInputHandle}/>
         </label>
         <label>
-          Rating:
-          <select name="" id="" value={rating} onChange={this.ratingInputHandle}>
+          Rating:  
+          <select value={rating} onChange={this.ratingInputHandle}>
             <option value="Y">Y</option>
             <option value="G">G</option>
             <option value="PG">PG</option>
@@ -74,8 +64,8 @@ export default class OptionsPanel extends Component<IOptionsPanelStore> {
           </select>
         </label>
         <label>
-          lang:
-          <select name="" id="" value={lang} onChange={this.langInputHandle}>
+          Language:  
+          <select  value={lang} onChange={this.langInputHandle}>
             <option value="en">en</option>
             <option value="ru">ru</option>
           </select>

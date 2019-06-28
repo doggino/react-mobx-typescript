@@ -1,0 +1,64 @@
+.searchContainer {
+  margin: 30px 10%;
+
+  .hotSearch {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    text-align: center;
+    .gifs {
+    }
+    .sticks {
+      margin-left: 100px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    button {
+      cursor: pointer;
+      border-radius: 0.25rem;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      outline: none;
+      margin-top: 10px;
+    }
+    .randomBtn {
+      background-color: #32CD32;
+      border-color: #32CD32;
+    }
+    .trendBtn {
+      background-color: #269abc;
+      border-color: #1f7e9a;
+      margin-left: 50px;
+    }
+  }
+  .selectContainer {
+    margin: 20px auto;
+    width: 80%;
+    height: 40px;
+    display:flex;
+    button {
+      background: #2196f3;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border-color: #2196f3;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-right: none;
+      width: 14%;
+      outline: none;
+
+    }
+    .selectInput {
+      width: 84%;
+      padding: 2px;
+      padding-left: 10px;
+      font-size: 18px;
+    }
+  }
+}

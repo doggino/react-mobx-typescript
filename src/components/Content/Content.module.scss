@@ -1,0 +1,13 @@
+.contentContainer {
+  border: 1px solid white;
+  margin: 5px auto;
+  padding: 5px;
+  height: 100%;
+  width: 96%;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}
+.content {
+  position: relative;
+}
