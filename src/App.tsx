@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { observer} from "mobx-react";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/* components */
+import SearchPanel from "./components/SearchPanel";
+import OptionsPanel from "./components/OptionsPanel";
+import Content from "./components/Content";
+
+/* styles */
+import styles from "./App.module.scss";
+
+
+@observer
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>Welcome to the GIPHY!</h1>
+        </div>
+        <OptionsPanel />
+        <SearchPanel />
+        <Content />
+      </div>
+    );
+  }
 }
-
-export default App;
